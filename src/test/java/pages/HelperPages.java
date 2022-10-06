@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,7 +37,6 @@ public class HelperPages {
 
     //получение WebElement по локатору с ожиданием
     public List<WebElement> getWebElements(String locator) {
-        waitElementVisibility(locator);
         return driver.findElements(By.cssSelector(locator));
     }
 
@@ -76,5 +76,12 @@ public class HelperPages {
             return false;
         }
     }
+
+    //Перемешение к элементу
+    public void moveTo(WebElement element) {
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
+
 
 }
