@@ -10,4 +10,11 @@ public class LoginAdminPage extends HelperPages {
     public void openAdminPage(){
         driver.get(baseUrl + "/litecart/admin");
     }
+
+    public void authorizationAdmin(){
+        inputInField("username", "admin");
+        inputInField("password", "admin");
+        clickCheckbox("remember_me");
+        clickButton("Login");
+    }
 }

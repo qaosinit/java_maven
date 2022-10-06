@@ -11,7 +11,7 @@ public class TestTask2 extends BaseTests {
         loginAdminPage.openAdminPage();
         loginAdminPage.inputInField("username", "admin");
         loginAdminPage.inputInField("password", "admin");
-        loginAdminPage.clickCheckbox(" Remember Me");
+        loginAdminPage.clickCheckbox("remember_me");
         loginAdminPage.clickButton("Login");
         Assert.assertTrue(adminPage.checkAuthorizationAdmin());
     }
