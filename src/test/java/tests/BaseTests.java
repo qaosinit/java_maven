@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.AdminPage;
+import pages.CountriesPage;
 import pages.LoginAdminPage;
 import pages.MainPage;
 
@@ -20,6 +21,7 @@ public class BaseTests {
     protected MainPage mainPage;
     protected LoginAdminPage loginAdminPage;
     protected AdminPage adminPage;
+    protected CountriesPage countriesPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -44,5 +46,6 @@ public class BaseTests {
         mainPage = new MainPage(driver);
         loginAdminPage = new LoginAdminPage(driver);
         adminPage = new AdminPage(driver);
+        countriesPage = new CountriesPage(driver);
     }
 }
