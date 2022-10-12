@@ -18,8 +18,11 @@ public class CountriesPage extends HelperPages {
     //метод сравнение по алфавиту
     public boolean checkListCountries(){
         boolean result = true;
-        List<WebElement> items = getWebElements("tr td:nth-child(5n)");
-        if (!compare(items)){
+        List<String> listCountries = new ArrayList<String>();
+        for (WebElement el: getWebElements("tr td:nth-child(5n)")) {
+            listCountries.add(el.getText());
+        }
+        if (!compare(listCountries)){
             result = false;
         }
         return result;
@@ -28,10 +31,10 @@ public class CountriesPage extends HelperPages {
     //метод сравнение по алфавиту
     public boolean checkListCountry(){
         boolean result = true;
-        List<WebElement> items = getWebElements("tr td:nth-child(6n)");
+        List<WebElement> listCountries = getWebElements("tr td:nth-child(6n)");
         List<Integer> count = new ArrayList<Integer>();
-        for (int i=0; i<items.size(); i++) {
-            if (!items.get(i).getText().equals("0")){
+        for (int i=0; i<listCountries.size(); i++) {
+            if (!listCountries.get(i).getText().equals("0")){
                 count.add(i);
             }
         }
@@ -39,7 +42,10 @@ public class CountriesPage extends HelperPages {
             WebElement element = getWebElements("tr td:nth-child(5n) a").get(g);
             moveTo(element);
             element.click();
-            List<WebElement> listZones = getWebElements("#table-zones td:nth-child(3n) input[type=hidden]");
+            List<String> listZones = new ArrayList<String>();
+            for (WebElement el: getWebElements("#table-zones td:nth-child(3n) input[type=hidden]")) {
+                listZones.add(el.getAttribute("value"));
+            }
             if (!compare(listZones)){
                 result = false;
                 break;
@@ -49,18 +55,16 @@ public class CountriesPage extends HelperPages {
         return result;
     }
 
-    public boolean compare(List<WebElement> items){
+    public boolean compare(List<String> items){
         boolean result=true;
-        List<String> listCountries = new ArrayList<String>();
-        for (WebElement el: items) {
-            listCountries.add(el.getText());
-        }
-        Collections.sort(listCountries);
-        for (int i=1; i<items.size(); i++) {
-            if (!listCountries.get(i).equals(items.get(i).getText())){
+        List<String> list = new ArrayList<String>();
+        list.addAll(items);
+        Collections.sort(list);
+        for (int i=0; i<items.size(); i++) {
+            if (!list.get(i).equals(items.get(i))){
                 result = false;
-                System.out.println("element_1 = " + listCountries.get(i));
-                System.out.println("element_2 = " + items.get(i).getText());
+                System.out.println("element_1 = " + list.get(i));
+                System.out.println("element_2 = " + items.get(i));
                 break;
             }
         }
