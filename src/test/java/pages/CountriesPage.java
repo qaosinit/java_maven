@@ -43,8 +43,9 @@ public class CountriesPage extends HelperPages {
             moveTo(element);
             element.click();
             List<String> listZones = new ArrayList<String>();
-            for (WebElement el: getWebElements("#table-zones td:nth-child(3n) input[type=hidden]")) {
-                listZones.add(el.getAttribute("value"));
+            List<WebElement> list = getWebElements("#table-zones td:nth-child(3n)");
+            for (int i=0; i<list.size()-1; i++) {
+                listZones.add(list.get(i).getText());
             }
             if (!compare(listZones)){
                 result = false;
