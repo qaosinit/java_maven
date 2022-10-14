@@ -5,6 +5,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HelperPages {
@@ -81,6 +83,31 @@ public class HelperPages {
     public void moveTo(WebElement element) {
         Actions action = new Actions(driver);
         action.moveToElement(element).perform();
+    }
+
+    public boolean compare(List<String> items){
+        boolean result=true;
+        List<String> list = new ArrayList<String>();
+        list.addAll(items);
+        Collections.sort(list);
+        for (int i=0; i<items.size(); i++) {
+            if (!list.get(i).equals(items.get(i))){
+                result = false;
+                System.out.println("element_1 = " + list.get(i));
+                System.out.println("element_2 = " + items.get(i));
+                break;
+            }
+        }
+        return result;
+    }
+
+    public List<String> listStringToGetText(String locatorCss){
+        List<WebElement> items = getWebElements(locatorCss);
+        List<String> list = new ArrayList<String>();
+        for (WebElement el: items) {
+            list.add(el.getText());
+        }
+        return list;
     }
 
 

@@ -11,10 +11,7 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.AdminPage;
-import pages.CountriesPage;
-import pages.LoginAdminPage;
-import pages.MainPage;
+import pages.*;
 
 public class BaseTests {
     private WebDriver driver;
@@ -22,6 +19,7 @@ public class BaseTests {
     protected LoginAdminPage loginAdminPage;
     protected AdminPage adminPage;
     protected CountriesPage countriesPage;
+    protected GeoZonesPage geoZonesPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -47,5 +45,6 @@ public class BaseTests {
         loginAdminPage = new LoginAdminPage(driver);
         adminPage = new AdminPage(driver);
         countriesPage = new CountriesPage(driver);
+        geoZonesPage = new GeoZonesPage(driver);
     }
 }
