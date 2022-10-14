@@ -3,6 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class AdminPage extends HelperPages {
     public AdminPage(WebDriver driver) {
@@ -42,6 +45,17 @@ public class AdminPage extends HelperPages {
             if (!result){break;}
         }
         return result;
+    }
+
+    //метод переклбчения по меню админки
+    public void switchOnMenu(String nameBlock){
+        List<WebElement> menu = getWebElements("#app-");
+        for (WebElement el : menu ) {
+            if (el.findElement(By.cssSelector("[class=name]")).getText().equals(nameBlock)){
+                el.click();
+                break;
+            }
+        }
     }
 
 
