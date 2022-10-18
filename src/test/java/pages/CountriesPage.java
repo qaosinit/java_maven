@@ -56,19 +56,5 @@ public class CountriesPage extends HelperPages {
         return result;
     }
 
-    public boolean compare(List<String> items){
-        boolean result=true;
-        List<String> list = new ArrayList<String>();
-        list.addAll(items);
-        Collections.sort(list);
-        for (int i=0; i<items.size(); i++) {
-            if (!list.get(i).equals(items.get(i))){
-                result = false;
-                System.out.println("element_1 = " + list.get(i));
-                System.out.println("element_2 = " + items.get(i));
-                break;
-            }
-        }
-        return result;
-    }
+
 }
