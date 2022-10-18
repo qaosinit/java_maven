@@ -15,7 +15,7 @@ public class CountriesPage extends HelperPages {
         driver.get(baseUrl + "/litecart/admin/?app=countries&doc=countries");
     }
 
-    //метод сравнение по алфавиту
+    //метод роверки по алфавиту списка стран
     public boolean checkListCountries(){
         boolean result = true;
         List<String> listCountries = new ArrayList<String>();
@@ -28,8 +28,8 @@ public class CountriesPage extends HelperPages {
         return result;
     }
 
-    //метод сравнение по алфавиту
-    public boolean checkListCountry(){
+    //метод проверки по алфавиту списка зон в стране
+    public boolean checkListZones(){
         boolean result = true;
         List<WebElement> listCountries = getWebElements("tr td:nth-child(6n)");
         List<Integer> count = new ArrayList<Integer>();
@@ -43,8 +43,9 @@ public class CountriesPage extends HelperPages {
             moveTo(element);
             element.click();
             List<String> listZones = new ArrayList<String>();
-            for (WebElement el: getWebElements("#table-zones td:nth-child(3n) input[type=hidden]")) {
-                listZones.add(el.getAttribute("value"));
+            List<WebElement> list = getWebElements("#table-zones td:nth-child(3n)");
+            for (int i=0; i<list.size()-1; i++) {
+                listZones.add(list.get(i).getText());
             }
             if (!compare(listZones)){
                 result = false;

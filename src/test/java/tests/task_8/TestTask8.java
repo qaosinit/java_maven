@@ -13,7 +13,7 @@ public class TestTask8 extends BaseTests {
         adminPage.checkAuthorizationAdmin();
         adminPage.switchOnMenu("Countries");
         Assert.assertTrue(countriesPage.checkListCountries());
-        Assert.assertTrue(countriesPage.checkListCountry());
+        Assert.assertTrue(countriesPage.checkListZones());
 
     }
 }
