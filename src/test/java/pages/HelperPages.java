@@ -137,9 +137,31 @@ public class HelperPages {
         int widthRegularPrice = getSizeWebElement(locatorSizeLess).width;
         int heightCampaignPrice = getSizeWebElement(locatorSizeMore).height;
         int widthCampaignPrice = getSizeWebElement(locatorSizeMore).width;
-        if (heightRegularPrice>heightCampaignPrice | widthRegularPrice>widthCampaignPrice){
+        if (heightRegularPrice>heightCampaignPrice & widthRegularPrice>widthCampaignPrice){
             result = false;
         }
+        return result;
+    }
+
+    // метод проверки, что у элемента серый цвет
+    public boolean colorElementIsGray(String locator){
+        boolean result = true;
+        String color = getValueCSSWebElement(locator, "color")
+                .replace("rgba(", "").replace(")", "");
+        String[] numColor = color.split(",");
+        if (!numColor[0].equals(numColor[1]) & !numColor[1].equals(numColor[2]))
+            result = false;
+        return result;
+    }
+
+    // метод проверки, что у элемента красный цвет
+    public boolean colorElementIsRed(String locator){
+        boolean result = true;
+        String color = getValueCSSWebElement(locator, "color")
+                .replace("rgba(", "").replace(")", "");
+        String[] numColor = color.split(",");
+        if (!numColor[1].equals(" 0") & !numColor[2].equals(" 0"))
+            result = false;
         return result;
     }
 

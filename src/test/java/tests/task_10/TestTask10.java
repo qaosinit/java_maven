@@ -13,10 +13,10 @@ public class TestTask10 extends BaseTests {
         String name = mainPage.getTextWebElement("#box-campaigns .product .name");
         String regularPrice = mainPage.getTextWebElement("#box-campaigns .product .regular-price");
         String campaignPrice = mainPage.getTextWebElement("#box-campaigns .product .campaign-price");
-        String colorRegularPrice = mainPage.getValueCSSWebElement("#box-campaigns .product .regular-price", "color");
-        String colorCampaignPrice = mainPage.getValueCSSWebElement("#box-campaigns .product .campaign-price", "color");
         String weightCampaignPrice = mainPage.getValueCSSWebElement("#box-campaigns .product .campaign-price", "font-weight");
         String textDecorationRegularPrice = mainPage.getValueCSSWebElement("#box-campaigns .product .regular-price", "text-decoration-line");
+        Assert.assertTrue(mainPage.colorElementIsGray("#box-campaigns .product .regular-price"));
+        Assert.assertTrue(mainPage.colorElementIsRed("#box-campaigns .product .campaign-price"));
 
         Assert.assertTrue(mainPage.compareSizePrices("#box-campaigns .product .regular-price",
                 "#box-campaigns .product .campaign-price"));
@@ -27,6 +27,8 @@ public class TestTask10 extends BaseTests {
         Assert.assertEquals(campaignPrice, productPage.getTextWebElement("#box-product .campaign-price"));
         Assert.assertTrue(mainPage.compareSizePrices("#box-product .regular-price",
                 "#box-product .campaign-price"));
+        Assert.assertTrue(mainPage.colorElementIsGray("#box-product .regular-price"));
+        Assert.assertTrue(mainPage.colorElementIsRed("#box-product .campaign-price"));
 
     }
 }
