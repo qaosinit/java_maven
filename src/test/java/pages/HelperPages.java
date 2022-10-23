@@ -42,6 +42,26 @@ public class HelperPages {
         return driver.findElements(By.cssSelector(locator));
     }
 
+    //получение текста WebElement по локатору с ожиданием
+    public String getTextWebElement(String locator) {
+        return getWebElement(locator).getText();
+    }
+
+    //получение значения аттрибута WebElement по локатору с ожиданием
+    public String getValueAttributeWebElement(String locator, String nameAttribute) {
+        return getWebElement(locator).getAttribute(nameAttribute);
+    }
+
+    //получение значения CSS WebElement по локатору с ожиданием
+    public String getValueCSSWebElement(String locator, String nameCss) {
+        return getWebElement(locator).getCssValue(nameCss);
+    }
+
+    //получение размера WebElement по локатору с ожиданием
+    public Dimension getSizeWebElement(String locator) {
+        return getWebElement(locator).getSize();
+    }
+
     //Клик кнопки
     public void clickButton(String nameButton) {
         String locator = "button[value=" + nameButton + "]";
@@ -108,6 +128,19 @@ public class HelperPages {
             list.add(el.getText());
         }
         return list;
+    }
+
+    // метод сранения размеров двух WebElement по локаторам
+    public boolean compareSizePrices(String locatorSizeLess, String locatorSizeMore){
+        boolean result = true;
+        int heightRegularPrice = getSizeWebElement(locatorSizeLess).height;
+        int widthRegularPrice = getSizeWebElement(locatorSizeLess).width;
+        int heightCampaignPrice = getSizeWebElement(locatorSizeMore).height;
+        int widthCampaignPrice = getSizeWebElement(locatorSizeMore).width;
+        if (heightRegularPrice>heightCampaignPrice | widthRegularPrice>widthCampaignPrice){
+            result = false;
+        }
+        return result;
     }
 
 

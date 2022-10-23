@@ -20,6 +20,7 @@ public class BaseTests {
     protected AdminPage adminPage;
     protected CountriesPage countriesPage;
     protected GeoZonesPage geoZonesPage;
+    protected ProductPage productPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -46,5 +47,6 @@ public class BaseTests {
         adminPage = new AdminPage(driver);
         countriesPage = new CountriesPage(driver);
         geoZonesPage = new GeoZonesPage(driver);
+        productPage = new ProductPage(driver);
     }
 }
