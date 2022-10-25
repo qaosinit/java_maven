@@ -20,6 +20,7 @@ public class BaseTests {
     protected AdminPage adminPage;
     protected CountriesPage countriesPage;
     protected GeoZonesPage geoZonesPage;
+    protected CreateAccountPage createAccountPage;
     protected ProductPage productPage;
 
     @BeforeMethod
@@ -48,6 +49,7 @@ public class BaseTests {
         adminPage = new AdminPage(driver);
         countriesPage = new CountriesPage(driver);
         geoZonesPage = new GeoZonesPage(driver);
+        createAccountPage = new CreateAccountPage(driver);
         productPage = new ProductPage(driver);
     }
 }
