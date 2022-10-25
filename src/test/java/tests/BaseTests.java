@@ -31,6 +31,7 @@ public class BaseTests {
         //driver = new EdgeDriver();
         //System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer.exe");
         //driver = new InternetExplorerDriver();
+        //driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         initPage();
