@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,6 +42,26 @@ public class HelperPages {
     //получение WebElement по локатору с ожиданием
     public List<WebElement> getWebElements(String locator) {
         return driver.findElements(By.cssSelector(locator));
+    }
+
+    //получение текста WebElement по локатору с ожиданием
+    public String getTextWebElement(String locator) {
+        return getWebElement(locator).getText();
+    }
+
+    //получение значения аттрибута WebElement по локатору с ожиданием
+    public String getValueAttributeWebElement(String locator, String nameAttribute) {
+        return getWebElement(locator).getAttribute(nameAttribute);
+    }
+
+    //получение значения CSS WebElement по локатору с ожиданием
+    public String getValueCSSWebElement(String locator, String nameCss) {
+        return getWebElement(locator).getCssValue(nameCss);
+    }
+
+    //получение размера WebElement по локатору с ожиданием
+    public Dimension getSizeWebElement(String locator) {
+        return getWebElement(locator).getSize();
     }
 
     //Клик кнопки
@@ -91,8 +112,12 @@ public class HelperPages {
 
     //Перемешение к элементу
     public void moveTo(WebElement element) {
-        Actions action = new Actions(driver);
-        action.moveToElement(element).perform();
+        try {
+            Actions action = new Actions(driver);
+            action.moveToElement(element).perform();
+        } catch (MoveTargetOutOfBoundsException ex){
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        }
     }
 
     public boolean compare(List<String> items){
@@ -118,6 +143,42 @@ public class HelperPages {
             list.add(el.getText());
         }
         return list;
+    }
+
+
+    // метод сранения размеров двух WebElement по локаторам
+    public boolean compareSizePrices(String locatorSizeLess, String locatorSizeMore){
+        boolean result = true;
+        int heightRegularPrice = getSizeWebElement(locatorSizeLess).height;
+        int widthRegularPrice = getSizeWebElement(locatorSizeLess).width;
+        int heightCampaignPrice = getSizeWebElement(locatorSizeMore).height;
+        int widthCampaignPrice = getSizeWebElement(locatorSizeMore).width;
+        if (heightRegularPrice>heightCampaignPrice & widthRegularPrice>widthCampaignPrice){
+            result = false;
+        }
+        return result;
+    }
+
+    // метод проверки, что у элемента серый цвет
+    public boolean colorElementIsGray(String locator){
+        boolean result = true;
+        String color = getValueCSSWebElement(locator, "color")
+                .replace("rgba(", "").replace(")", "");
+        String[] numColor = color.split(",");
+        if (!numColor[0].equals(numColor[1]) & !numColor[1].equals(numColor[2]))
+            result = false;
+        return result;
+    }
+
+    // метод проверки, что у элемента красный цвет
+    public boolean colorElementIsRed(String locator){
+        boolean result = true;
+        String color = getValueCSSWebElement(locator, "color")
+                .replace("rgba(", "").replace(")", "");
+        String[] numColor = color.split(",");
+        if (!numColor[1].equals(" 0") & !numColor[2].equals(" 0"))
+            result = false;
+        return result;
     }
 
     public int getRandomNumber(int max){

@@ -21,6 +21,7 @@ public class BaseTests {
     protected CountriesPage countriesPage;
     protected GeoZonesPage geoZonesPage;
     protected CreateAccountPage createAccountPage;
+    protected ProductPage productPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -31,6 +32,7 @@ public class BaseTests {
         //driver = new EdgeDriver();
         //System.setProperty("webdriver.ie.driver", "C:\\Tools\\IEDriverServer.exe");
         //driver = new InternetExplorerDriver();
+        //driver = new FirefoxDriver();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         initPage();
@@ -48,5 +50,6 @@ public class BaseTests {
         countriesPage = new CountriesPage(driver);
         geoZonesPage = new GeoZonesPage(driver);
         createAccountPage = new CreateAccountPage(driver);
+        productPage = new ProductPage(driver);
     }
 }
