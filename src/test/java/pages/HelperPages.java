@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -43,16 +44,25 @@ public class HelperPages {
     }
 
     //Клик кнопки
-    public void clickButton(String nameButton) {
-        String locator = "button[value=" + nameButton + "]";
+    public void clickButton(String valueButton) {
+        String locator = "button[value='" + valueButton + "']";
         waitElementToBeClickable(locator);
         getWebElement(locator).click();
+    }
+
+    //Клик ссылки
+    public void clickLink(String textLink) {
+        String locator = "//a[text()=\'" + textLink + "\']";
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.xpath(locator))));
+        driver.findElement(By.xpath(locator)).click();
     }
 
     //ввод значения в поле по его аттрибуту name
     public void inputInField(String nameField, String value) {
         String locator = "input[name=" + nameField + "]";
         waitElementToBeClickable(locator);
+        getWebElement(locator).clear();
         getWebElement(locator).sendKeys(value);
     }
 
@@ -108,6 +118,16 @@ public class HelperPages {
             list.add(el.getText());
         }
         return list;
+    }
+
+    public int getRandomNumber(int max){
+        return (int) (Math.random() * ++max);
+    }
+
+    // метод выбора в выпадающем списке
+    public void selectValueInDropDownList(String locatorCss, String textValue){
+        Select select = new Select(getWebElement(locatorCss));
+        select.selectByValue(textValue);
     }
 
 
