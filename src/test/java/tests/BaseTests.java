@@ -22,6 +22,7 @@ public class BaseTests {
     protected GeoZonesPage geoZonesPage;
     protected CreateAccountPage createAccountPage;
     protected ProductPage productPage;
+    protected СheckoutPage сheckoutPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -51,5 +52,7 @@ public class BaseTests {
         geoZonesPage = new GeoZonesPage(driver);
         createAccountPage = new CreateAccountPage(driver);
         productPage = new ProductPage(driver);
+        сheckoutPage = new СheckoutPage(driver);
+
     }
 }

@@ -27,6 +27,12 @@ public class HelperPages {
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(locator))));
     }
 
+    //Ожмдание НЕ видимости элемента на странице
+    public boolean waitElementNotVisibility(String locator) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
+        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(locator))));
+    }
+
     //метод ожидания кликабельности элемента
     public void waitElementToBeClickable(String locator) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
@@ -189,6 +195,27 @@ public class HelperPages {
     public void selectValueInDropDownList(String locatorCss, String textValue){
         Select select = new Select(getWebElement(locatorCss));
         select.selectByValue(textValue);
+    }
+
+    //метод ожидания текста в элементе
+    public boolean waitToBeTextInElement(String locator, String text){
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
+        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(locator), text)));
+    }
+
+    public boolean checkCountInBasket(String countProduct){
+        return waitToBeTextInElement(".quantity", countProduct);
+    }
+
+    //метод ожидания исчезновения элемента
+    public boolean waitStalenessOfElement(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
+        driver.navigate().refresh();
+        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
+    }
+
+    public void backToPage(){
+        driver.navigate().back();
     }
 
 

@@ -26,4 +26,9 @@ public class MainPage extends HelperPages {
         }
         return haveOneSticker;
     }
+
+    public void openFirstProduct(){
+        getWebElements("#box-most-popular .product").get(0).click();
+    }
+
 }
