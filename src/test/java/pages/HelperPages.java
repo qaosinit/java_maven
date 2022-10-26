@@ -198,7 +198,19 @@ public class HelperPages {
     // метод выбора в выпадающем списке
     public void selectValueInDropDownList(String locatorCss, String textValue){
         Select select = new Select(getWebElement(locatorCss));
-        select.selectByValue(textValue);
+        select.selectByVisibleText(textValue);
+    }
+
+    // метод выбора в выпадающем списке
+    public void selectValueInDropDown(String nameField, String textValue){
+        driver.findElement(By.xpath("//td[text()='" + nameField + "']//span[@role=\"presentation\"]")).click();
+        for (WebElement el: getWebElements(".select2-results__options li")) {
+            if (el.getText().equals(textValue)){
+                moveTo(el);
+                el.click();
+                break;
+            }
+        }
     }
 
     //метод ожидания текста в элементе

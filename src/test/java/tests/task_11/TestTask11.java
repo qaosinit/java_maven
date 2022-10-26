@@ -17,8 +17,8 @@ public class TestTask11 extends BaseTests {
         createAccountPage.inputInField("address1", "Moscow");
         createAccountPage.inputInField("postcode", "44571");
         createAccountPage.inputInField("city", "Moscow");
-        createAccountPage.selectValueInDropDownList("select[name=country_code]", "US");
-        createAccountPage.selectValueInDropDownList("select[name=zone_code]", "AK");
+        createAccountPage.selectValueInDropDown( "Country ", "United States");
+        createAccountPage.selectValueInDropDownList("select[name=zone_code]", "New Mexico");
         createAccountPage.inputInField("email", email);
         createAccountPage.inputInField("phone", "+79663214569");
         createAccountPage.inputInField("password", password);
