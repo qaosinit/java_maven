@@ -88,7 +88,7 @@ public class HelperPages {
 
     //ввод значения в поле по его аттрибуту name
     public void inputInField(String nameField, String value) {
-        String locator = "input[name=" + nameField + "]";
+        String locator = "input[name=\'" + nameField + "\']";
         waitElementToBeClickable(locator);
         getWebElement(locator).clear();
         getWebElement(locator).sendKeys(value);
@@ -232,6 +232,16 @@ public class HelperPages {
 
     public void backToPage(){
         driver.navigate().back();
+    }
+
+    public void loadFile(String nameFile){
+        getWebElement("input[type=file]").sendKeys(
+                System.getProperty("user.dir") + "\\src\\main\\resources\\" + nameFile);
+    }
+
+    public void setDatepicker(String cssSelector, String date) {
+        getWebElement(cssSelector).isDisplayed();
+        ((JavascriptExecutor) driver).executeScript( String.format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
     }
 
 

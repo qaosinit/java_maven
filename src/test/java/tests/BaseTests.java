@@ -23,6 +23,8 @@ public class BaseTests {
     protected CreateAccountPage createAccountPage;
     protected ProductPage productPage;
     protected СheckoutPage сheckoutPage;
+    protected CatalogPage catalogPage;
+    protected AddNewProductPage addNewProductPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -53,6 +55,7 @@ public class BaseTests {
         createAccountPage = new CreateAccountPage(driver);
         productPage = new ProductPage(driver);
         сheckoutPage = new СheckoutPage(driver);
-
+        catalogPage = new CatalogPage(driver);
+        addNewProductPage = new AddNewProductPage(driver);
     }
 }
