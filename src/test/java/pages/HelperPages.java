@@ -15,8 +15,8 @@ import java.util.List;
 public class HelperPages {
     final WebDriver driver;
     private int timeOutInSecond = 5;
-    //protected String baseUrl = "http://192.168.111.46/";
-    protected String baseUrl = "http://localhost";
+    protected String baseUrl = "http://192.168.111.46/";
+    //protected String baseUrl = "http://localhost";
 
     public HelperPages(WebDriver driver) {
         this.driver = driver;
