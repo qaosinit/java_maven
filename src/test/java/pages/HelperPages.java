@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -155,11 +156,14 @@ public class HelperPages {
     // метод сранения размеров двух WebElement по локаторам
     public boolean compareSizePrices(String locatorSizeLess, String locatorSizeMore){
         boolean result = true;
-        int heightRegularPrice = getSizeWebElement(locatorSizeLess).height;
-        int widthRegularPrice = getSizeWebElement(locatorSizeLess).width;
-        int heightCampaignPrice = getSizeWebElement(locatorSizeMore).height;
-        int widthCampaignPrice = getSizeWebElement(locatorSizeMore).width;
-        if (heightRegularPrice>heightCampaignPrice & widthRegularPrice>widthCampaignPrice){
+        String SizeLess = getValueCSSWebElement(locatorSizeLess, "font-size");
+        String SizeMore = getValueCSSWebElement(locatorSizeMore, "font-size");
+        double SizeMoreDbl = Double.parseDouble(SizeMore.substring(0, (SizeMore.length()-2)));
+        double SizeLessDbl = Double.parseDouble(SizeLess.substring(0, (SizeLess.length()-2)));
+        BigDecimal f1 = new BigDecimal(SizeMoreDbl);
+        BigDecimal f2 = new BigDecimal(SizeLessDbl);
+        System.out.println(f1.compareTo(f2));
+        if (f1.compareTo(f2) != 1){
             result = false;
         }
         return result;
