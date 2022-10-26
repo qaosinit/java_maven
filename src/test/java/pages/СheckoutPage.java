@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class СheckoutPage extends HelperPages {
     public СheckoutPage(WebDriver driver) {
@@ -13,5 +15,13 @@ public class СheckoutPage extends HelperPages {
 
     public boolean checkCountRowsInTableOrderSummary(String countRows){
         return waitToBeTextInElement("#box-checkout-summary tbody tr:nth-child(2)>td:nth-of-type(1)", countRows);
+    }
+
+    public void clearBasket(){
+        while (isElementPresent("#box-checkout-summary table")){
+            WebElement rowTable = getWebElement("#box-checkout-summary table");
+            clickButton("Remove");
+            Assert.assertTrue(waitStalenessOfElement(rowTable));
+        }
     }
 }
