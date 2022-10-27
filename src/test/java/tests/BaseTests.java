@@ -25,6 +25,7 @@ public class BaseTests {
     protected СheckoutPage сheckoutPage;
     protected CatalogPage catalogPage;
     protected AddNewProductPage addNewProductPage;
+    protected EditCountryPage editCountryPage;
 
     @BeforeMethod
     public void startBrowser() {
@@ -57,5 +58,6 @@ public class BaseTests {
         сheckoutPage = new СheckoutPage(driver);
         catalogPage = new CatalogPage(driver);
         addNewProductPage = new AddNewProductPage(driver);
+        editCountryPage = new EditCountryPage(driver);
     }
 }

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class HelperPages {
     final WebDriver driver;
@@ -242,6 +243,41 @@ public class HelperPages {
     public void setDatepicker(String cssSelector, String date) {
         getWebElement(cssSelector).isDisplayed();
         ((JavascriptExecutor) driver).executeScript( String.format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
+    }
+
+    public boolean checkWorkLink(WebElement elementLink){
+        boolean result = true;
+        String mainWindow = driver.getWindowHandle();
+        Set<String> oldWindows = driver.getWindowHandles();
+        elementLink.click(); // открывает новое окно
+        int i=0;
+        while (driver.getWindowHandles().size() <= oldWindows.size()){
+            try {
+                i++;
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (i>6){
+                result = false;
+                break;
+            }
+        }
+        String newWindow = null;
+        for (String s: driver.getWindowHandles()) {
+            if (!oldWindows.contains(s)){
+                newWindow = s;
+                break;
+            }
+        }
+        if (newWindow!=null){
+            driver.switchTo().window(newWindow);
+            driver.close();
+            driver.switchTo().window(mainWindow);
+        }else {
+            result = false;
+        }
+        return result;
     }
 
 

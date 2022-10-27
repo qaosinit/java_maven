@@ -56,5 +56,15 @@ public class CountriesPage extends HelperPages {
         return result;
     }
 
+    public void openCountry(String nameCountry){
+        for (WebElement el : getWebElements(".row>td:nth-child(5) a")) {
+            if (el.getText().equals(nameCountry)){
+                moveTo(el);
+                el.click();
+                break;
+            }
+        }
+    }
+
 
 }
