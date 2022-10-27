@@ -41,6 +41,12 @@ public class HelperPages {
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.cssSelector(locator))));
     }
 
+    //метод ожидания кликабельности элемента
+    public void waitElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSecond);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+    }
+
     //получение WebElement по локатору с ожиданием
     public WebElement getWebElement(String locator) {
         waitElementVisibility(locator);

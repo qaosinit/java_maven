@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.*;
 
 public class BaseTests {
-    private WebDriver driver;
+    protected WebDriver driver;
     protected MainPage mainPage;
     protected LoginAdminPage loginAdminPage;
     protected AdminPage adminPage;

@@ -30,4 +30,14 @@ public class CatalogPage extends HelperPages {
         }
         return result;
     }
+
+    public void openAllFolder(){
+        while (driver.findElements(By.xpath("//*[contains(@class, 'folder')]/following-sibling::a")).size()!=0){
+            for (WebElement e : driver.findElements(By.xpath("//*[contains(@class, 'folder')]/following-sibling::a"))) {
+                if(Integer.parseInt(e.getCssValue("font-weight"))< 700){
+                    e.click();
+                }
+            }
+        }
+    }
 }
