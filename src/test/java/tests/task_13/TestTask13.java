@@ -14,9 +14,9 @@ public class TestTask13 extends BaseTests {
             mainPage.openFirstProduct();
             productPage.addProductToCart();
             Assert.assertTrue(productPage.checkCountInBasket(Integer.toString(i+1)));
-            mainPage.backToPage();
+            productPage.backToPage();
         }
-        productPage.clickLink("Checkout »");
+        mainPage.clickLink("Checkout »");
         сheckoutPage.clearBasket();
     }
 
