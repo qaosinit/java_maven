@@ -286,5 +286,9 @@ public class HelperPages {
         return result;
     }
 
+    public String createRandomName(String name){
+        return name + "_" + Integer.toString(getRandomNumber(1000));
+    }
+
 
 }

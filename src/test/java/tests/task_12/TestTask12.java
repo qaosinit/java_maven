@@ -13,7 +13,8 @@ public class TestTask12 extends BaseTests {
         adminPage.switchOnMenu("Catalog");
         catalogPage.clickAddNewProduct();
         addNewProductPage.setStatus("Enabled");
-        addNewProductPage.inputInField("name[en]", "Duck new");
+        String nameProduct = addNewProductPage.createRandomName("Duck new");
+        addNewProductPage.inputInField("name[en]", nameProduct);
         addNewProductPage.inputInField("code", "1234");
         addNewProductPage.inputInField("quantity", "12");
         addNewProductPage.loadFile("duck.png");
@@ -32,7 +33,7 @@ public class TestTask12 extends BaseTests {
         addNewProductPage.inputInField("gross_prices[EUR]", "0,25");
         addNewProductPage.clickButton("Save");
         addNewProductPage.waitElementVisibility(".notice.success");
-        Assert.assertTrue(catalogPage.checkHaveProduct("Duck new"));
+        Assert.assertTrue(catalogPage.checkHaveProduct(nameProduct));
     }
 
 }
